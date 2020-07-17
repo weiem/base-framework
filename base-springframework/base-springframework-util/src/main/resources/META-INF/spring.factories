@@ -1,0 +1,5 @@
+#org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+#	com.wei.base.springframework.util.UtilConfiguration
+	
+#org.springframework.boot.env.EnvironmentPostProcessor=\
+#	org.springframework.core.web.config.Test
