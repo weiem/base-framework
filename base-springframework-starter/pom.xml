@@ -7,6 +7,11 @@
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
 
+    <modules>
+        <module>../wei-test</module>
+        <module>../wei-test-cloud</module>
+    </modules>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
@@ -23,6 +28,11 @@
         <dependency>
             <groupId>com.wei</groupId>
             <artifactId>base-springframework-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.wei</groupId>
+            <artifactId>base-springframework-cloud</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

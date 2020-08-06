@@ -7,10 +7,10 @@ import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
 import com.wei.base.springframework.core.web.config.ResponseHandlerConfigure;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
 
 @Configuration
 public class FastJsonConverter {
@@ -19,7 +19,7 @@ public class FastJsonConverter {
     private ResponseHandlerConfigure responseHandlerConfigure;
 
     @Bean
-    public HttpMessageConverter<Object> configureMessageConverters() {
+    public HttpMessageConverters configureMessageConverters() {
         FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
 
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
@@ -33,6 +33,6 @@ public class FastJsonConverter {
 
         fastConverter.setFastJsonConfig(fastJsonConfig);
         fastConverter.setSupportedMediaTypes(Lists.newArrayList(MediaType.APPLICATION_JSON));
-        return fastConverter;
+        return new HttpMessageConverters(fastConverter);
     }
 }

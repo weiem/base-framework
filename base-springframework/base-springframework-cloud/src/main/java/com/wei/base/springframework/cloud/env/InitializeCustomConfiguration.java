@@ -1,4 +1,4 @@
-package com.wei.base.springframework.core.env;
+package com.wei.base.springframework.cloud.env;
 
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
@@ -25,7 +25,7 @@ import java.util.Properties;
 public class InitializeCustomConfiguration implements EnvironmentPostProcessor {
 
     //自定义配置文件地址
-    private static final List<String> PROFILES = Lists.newArrayList("application-common.yml");
+    private static final List<String> PROFILES = Lists.newArrayList("application-cloud.yml");
 
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {

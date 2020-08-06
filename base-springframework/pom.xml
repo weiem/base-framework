@@ -11,6 +11,7 @@
         <module>base-springframework-util</module>
         <module>base-springframework-core</module>
         <module>base-springframework-mysql</module>
+        <module>base-springframework-cloud</module>
     </modules>
 
     <properties>

@@ -8,7 +8,14 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <packaging>pom</packaging>
     <artifactId>wei-test</artifactId>
+
+    <modules>
+        <module>wei-test-api</module>
+        <module>wei-test-app</module>
+    </modules>
+
     <build>
         <plugins>
             <plugin>

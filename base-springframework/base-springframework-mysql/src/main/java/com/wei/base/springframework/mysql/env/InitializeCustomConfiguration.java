@@ -1,9 +1,12 @@
 package com.wei.base.springframework.mysql.env;
 
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.env.EnvironmentPostProcessor;
+import org.springframework.boot.env.YamlPropertySourceLoader;
 import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertiesPropertySource;
 import org.springframework.core.env.PropertySource;
 import org.springframework.core.io.ClassPathResource;
@@ -21,32 +24,60 @@ import java.util.Properties;
  */
 public class InitializeCustomConfiguration implements EnvironmentPostProcessor {
 
-    //Properties对象
-    private final Properties PROPERTIES = new Properties();
-
     //自定义配置文件地址
-    private static final List<String> PROFILES = Lists.newArrayList("mysql-application.yml");
+    private static final List<String> PROFILES = Lists.newArrayList("application-mysql.yml");
 
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
         PROFILES.stream().forEach(profile -> {
             //从classpath路径下面查找文件
             Resource resource = new ClassPathResource(profile);
+            if (resource == null || !resource.exists()) {
+                throw new IllegalArgumentException("资源" + resource + "不存在");
+            }
+
+            MutablePropertySources mutablePropertySources = environment.getPropertySources();
             //加载成PropertySource对象，并添加到Environment环境中
-            environment.getPropertySources().addLast(loadProfiles(resource));
+            switch (StringUtils.substringAfterLast(profile, ".")) {
+                case "yml":
+                    List<PropertySource<?>> propertySources = loadYmlProfiles(resource);
+                    propertySources.stream().forEach(propertySource -> {
+                        mutablePropertySources.addLast(propertySource);
+                    });
+                    break;
+                default:
+                    mutablePropertySources.addLast(loadProfiles(resource));
+                    break;
+            }
         });
     }
 
-    //加载单个配置文件
-    private PropertySource<?> loadProfiles(Resource resource) {
-        if (resource == null || !resource.exists()) {
-            throw new IllegalArgumentException("资源" + resource + "不存在");
-        }
-
+    /**
+     * 加载单个配置文件
+     *
+     * @param resource
+     * @return
+     */
+    private PropertiesPropertySource loadProfiles(Resource resource) {
         try {
-            //从输入流中加载一个Properties对象
-            PROPERTIES.load(resource.getInputStream());
-            return new PropertiesPropertySource(resource.getFilename(), PROPERTIES);
+            Properties properties = new Properties();
+            properties.load(resource.getInputStream());
+            return new PropertiesPropertySource(resource.getFilename(), properties);
+        } catch (IOException ex) {
+            throw new IllegalStateException("加载配置文件失败" + resource, ex);
+        }
+    }
+
+    /**
+     * 加载yml格式配置文件
+     *
+     * @param resource
+     * @return
+     */
+    private List<PropertySource<?>> loadYmlProfiles(Resource resource) {
+        try {
+            YamlPropertySourceLoader yamlPropertySourceLoader = new YamlPropertySourceLoader();
+            return yamlPropertySourceLoader.load(resource.getFilename(), resource);
         } catch (IOException ex) {
             throw new IllegalStateException("加载配置文件失败" + resource, ex);
         }
