@@ -1,8 +1,8 @@
 package com.wei.base.springframework.core.web.handler;
 
-import com.wei.base.springframework.core.enums.RestfulEnum;
-import com.wei.base.springframework.core.vo.RestfulVO;
-import com.wei.base.springframework.core.web.exception.ServiceException;
+import com.wei.base.springframework.constant.enums.RestfulEnum;
+import com.wei.base.springframework.constant.exception.ServiceException;
+import com.wei.base.springframework.constant.vo.RestfulVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -52,13 +52,6 @@ public class BaseExceptionHandler {
         log.error(e.getMessage(), e);
         return new RestfulVO<>(RestfulEnum.FAIL, "系统错误!");
     }
-
-//    @ExceptionHandler(HystrixRuntimeException.class)
-//    @ResponseBody
-//    public RestfulVO<String> hystrixRuntimeException(HystrixRuntimeException e) {
-//        log.error(e.getMessage(), e.getCause());
-//        return new RestfulVO<>(RestfulEnum.FAIL, "系统错误!");
-//    }
 
     /**
      * 封装javax.validation.Valid抛出的错误
