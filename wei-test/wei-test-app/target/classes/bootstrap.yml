@@ -1,0 +1,39 @@
+server:
+  port: 8101
+
+spring:
+  application:
+    name: wei-test
+  cloud:
+    consul:
+      # consul的IP
+      host: 192.168.11.128
+      # consul启动端口
+      port: 8500
+  profiles:
+    active: dev
+
+feign:
+  hystrix:
+    # 在feign中开启hystrix功能，默认情况下feign不开启hystrix功能
+    enabled: true
+  httpclient:
+    # 只要引入feign-httpclient包默认启用 不加此配置也可以
+    enabled: true
+
+# 配置hystrix的参数
+hystrix:
+  threadpool:
+    # default: 默认参数，作用的所有的hystrix的客户端,如果需要对某个具体的接口，可以写接口+方法名称
+    default:
+      coreSize: 500
+  command:
+    default:
+      fallback:
+        # 是否开启回退方法
+        enabled: true
+      execution:
+        isolation:
+          thread:
+            #超时时间 默认1000毫秒
+            timeoutInMilliseconds: 5000

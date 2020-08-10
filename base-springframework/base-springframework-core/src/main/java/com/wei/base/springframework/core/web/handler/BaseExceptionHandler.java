@@ -85,26 +85,6 @@ public class BaseExceptionHandler {
      * @param e
      * @return
      */
-//    @ExceptionHandler(ConstraintViolationException.class)
-//    @ResponseBody
-//    public RestfulVO<String> constraintViolationException(ConstraintViolationException e) {
-//        log.error(e.getMessage(), e);
-//        Set<ConstraintViolation<?>> constraintViolations = e.getConstraintViolations();
-//        StringBuilder stringBuilder = new StringBuilder();
-//
-//        constraintViolations.forEach(vo -> {
-//            stringBuilder.append(vo.getMessage() + ";");
-//        });
-//
-//        return new RestfulVO<>(RestfulEnum.FAIL, stringBuilder.toString());
-//    }
-
-    /**
-     * 封装javax.validation抛出的错误
-     *
-     * @param e
-     * @return
-     */
     @ExceptionHandler(MissingServletRequestParameterException.class)
     @ResponseBody
     public RestfulVO<String> missingServletRequestParameterException(MissingServletRequestParameterException e) {

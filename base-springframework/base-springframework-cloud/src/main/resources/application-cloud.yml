@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    consul:
+      config:
+        #是否启用配置中心 默认为true启用
+        enabled: true
+        # 表示consul上面文件的格式 有四种 yaml properties key_value files
+        format: yaml
+        prefix: config/${spring.profiles.active}
+        data-key: application
+      discovery:
+        prefer-ip-address: true

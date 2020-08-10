@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+	com.wei.base.springframework.core.CoreConfiguration
+org.springframework.boot.env.EnvironmentPostProcessor=\
+  com.wei.base.springframework.core.env.InitializeCustomConfiguration

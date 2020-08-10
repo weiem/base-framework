@@ -8,6 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <modules>
+        <module>base-springframework-constant</module>
         <module>base-springframework-util</module>
         <module>base-springframework-core</module>
         <module>base-springframework-mysql</module>
