@@ -2,6 +2,7 @@ package ${package.Controller};
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ${package.Service}.${table.serviceName};
 
 <#if restControllerStyle>
 import org.springframework.web.bind.annotation.RestController;

@@ -27,6 +27,11 @@
     <dependencies>
         <dependency>
             <groupId>com.wei</groupId>
+            <artifactId>base-springframework-util</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.wei</groupId>
             <artifactId>base-springframework-constant</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -44,11 +49,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
             <version>${spring-cloud.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.wei</groupId>
-            <artifactId>base-springframework-util</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>

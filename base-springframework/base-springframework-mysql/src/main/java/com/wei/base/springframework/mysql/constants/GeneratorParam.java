@@ -18,7 +18,7 @@ public class GeneratorParam {
     /**
      * 驱动连接的URL
      */
-    private String dataSourceUrl = "jdbc:mysql://gz-cdb-mrzurxn3.sql.tencentcdb.com:60057/share?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT";
+    private String dataSourceUrl = "jdbc:mysql://gz-cdb-mrzurxn3.sql.tencentcdb.com:60057/wei_user?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT";
 
     /**
      * 数据库连接用户名
@@ -43,5 +43,5 @@ public class GeneratorParam {
     /**
      * 包名
      */
-    private String parent = "com.wei.test";
+    private String parent = "com.wei.user";
 }

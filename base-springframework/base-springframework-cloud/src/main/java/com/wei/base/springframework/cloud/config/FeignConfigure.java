@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Data
-@ConfigurationProperties(prefix = "spring.response-body-advice")
+@ConfigurationProperties(prefix = "spring.cloud.feign")
 @Configuration
 public class FeignConfigure {
 
