@@ -10,6 +10,7 @@
     <modules>
         <module>../wei-test</module>
         <module>../wei-test-cloud</module>
+        <module>../wei-gateway</module>
     </modules>
 
     <properties>
