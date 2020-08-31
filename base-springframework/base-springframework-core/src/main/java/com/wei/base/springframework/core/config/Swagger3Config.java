@@ -39,6 +39,5 @@ public class Swagger3Config {
                         "799058254@qq.com"))
                 .version("1.0")
                 .build();
-
     }
 }

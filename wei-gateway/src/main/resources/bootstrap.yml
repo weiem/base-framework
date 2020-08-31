@@ -1,0 +1,15 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: wei-gateway
+  cloud:
+    consul:
+      # consul的IP
+      host: 192.168.11.128
+      # consul启动端口
+      port: 8500
+
+  profiles:
+    active: dev
