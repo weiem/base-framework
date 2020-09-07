@@ -1,4 +1,4 @@
-package com.wei.base.springframework.mysql.generator;
+package com.wei.base.springframework.redis.generator;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.wei.base.springframework.mysql.constants.GeneratorParam;
+import com.wei.base.springframework.redis.constants.GeneratorParam;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -69,7 +69,7 @@ public class Generator {
 
         cfg.setFileOutConfigList(focList);
         mpg.setCfg(cfg);
-        
+
 //        // 关闭默认 xml 生成，调整生成 至 根目录
 //        TemplateConfig tc = new TemplateConfig();
 //        tc.setXml(null);
@@ -103,7 +103,8 @@ public class Generator {
         gc.setEnableCache(false);// XML 二级缓存
         gc.setBaseResultMap(true);// XML ResultMap
         gc.setBaseColumnList(false);// XML columList
-        gc.setDateType(DateType.ONLY_DATE);
+        //设置日期类型
+        gc.setDateType(DateType.TIME_PACK);
         gc.setServiceName("%sService");
 
         return gc;

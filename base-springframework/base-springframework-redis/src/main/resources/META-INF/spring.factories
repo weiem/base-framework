@@ -1,4 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.wei.base.springframework.redis.config.MybatisPlusConfig
+  com.wei.base.springframework.redis.config.RedisConfig,\
+  com.wei.base.springframework.redis.utils.RedisLock
 org.springframework.boot.env.EnvironmentPostProcessor=\
   com.wei.base.springframework.core.env.InitializeCustomConfiguration

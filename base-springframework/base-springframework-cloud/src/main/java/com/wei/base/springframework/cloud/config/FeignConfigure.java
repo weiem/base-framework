@@ -5,8 +5,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Data
-@ConfigurationProperties(prefix = "spring.cloud.feign")
 @Configuration
+@ConfigurationProperties(prefix = "spring.cloud.feign")
 public class FeignConfigure {
 
     /**

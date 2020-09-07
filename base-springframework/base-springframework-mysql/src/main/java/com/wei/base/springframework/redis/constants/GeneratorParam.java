@@ -1,4 +1,4 @@
-package com.wei.base.springframework.mysql.constants;
+package com.wei.base.springframework.redis.constants;
 
 import lombok.Data;
 
@@ -18,7 +18,7 @@ public class GeneratorParam {
     /**
      * 驱动连接的URL
      */
-    private String dataSourceUrl = "jdbc:mysql://gz-cdb-mrzurxn3.sql.tencentcdb.com:60057/wei_user?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT";
+    private String dataSourceUrl = "jdbc:mysql://192.168.11.128:3306/wei_user?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT";
 
     /**
      * 数据库连接用户名
@@ -28,7 +28,7 @@ public class GeneratorParam {
     /**
      * 数据库连接密码
      */
-    private String dataSourcePassWord = "Leven1234@";
+    private String dataSourcePassWord = "123456";
 
     /**
      * 需要生成的表

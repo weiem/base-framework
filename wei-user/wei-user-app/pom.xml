@@ -13,14 +13,20 @@
     <dependencies>
         <dependency>
             <groupId>com.wei</groupId>
+            <artifactId>wei-user-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.wei</groupId>
             <artifactId>base-springframework-mysql</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.wei</groupId>
-            <artifactId>wei-user-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <artifactId>base-springframework-redis</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

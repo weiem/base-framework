@@ -1,5 +1,13 @@
+spring:
+  mvc:
+    servlet:
+      #启动时加载所有servlet 避免访问后在加载会延长第一次的请求时间
+      load-on-startup: 0
+
 #公共配置 减少各个项目中的配置
-service:
+server:
+  servlet:
+    context-path: /${spring.application.name}
   undertow:
     threads:
       # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程

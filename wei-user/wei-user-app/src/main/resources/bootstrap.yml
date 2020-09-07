@@ -1,7 +1,5 @@
 server:
   port: 8201
-  servlet:
-    context-path: /wei-user
 
 spring:
   application:
@@ -16,3 +14,10 @@ spring:
   profiles:
     active: dev
 
+  datasource:
+    url: jdbc:mysql://192.168.11.128:3306/wei_user?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+    username: root
+    password: 123456
+  redis:
+    host: 192.168.11.128
+    port: 6379

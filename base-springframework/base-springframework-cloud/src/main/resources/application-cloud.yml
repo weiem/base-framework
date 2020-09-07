@@ -6,7 +6,16 @@ spring:
         enabled: true
         # 表示consul上面文件的格式 有四种 yaml properties key_value files
         format: yaml
-        prefix: config/${spring.profiles.active}
+        prefix: config/${spring.profiles.active:}
         data-key: application
       discovery:
         prefer-ip-address: true
+        health-check-path: ${server.servlet.context-path:}/actuator/health
+
+ribbon:
+  eager-load:
+    enabled: true
+    # 是否自动加载
+    autoEnabled: true
+    # 需要过滤加载的服务
+    excludes: consul

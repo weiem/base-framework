@@ -1,5 +1,5 @@
 #公共配置 减少各个项目中的配置
-service:
+spring:
   datasource:
     driver: com.mysql.cj.jdbc.Driver
 

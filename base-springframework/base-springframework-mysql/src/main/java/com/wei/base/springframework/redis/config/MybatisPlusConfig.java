@@ -1,4 +1,4 @@
-package com.wei.base.springframework.mysql.config;
+package com.wei.base.springframework.redis.config;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;

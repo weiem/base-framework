@@ -1,7 +1,9 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
     com.wei.base.springframework.cloud.config.FeignConfigure,\
     com.wei.base.springframework.cloud.feign.FeignInterceptor,\
-    com.wei.base.springframework.cloud.feign.FeignDecoder
+    com.wei.base.springframework.cloud.feign.FeignDecoder,\
+    com.wei.base.springframework.cloud.config.RibbonConfig,\
+    com.wei.base.springframework.cloud.config.RibbonProperties
 
 org.springframework.boot.env.EnvironmentPostProcessor=\
     com.wei.base.springframework.cloud.env.InitializeCustomConfiguration

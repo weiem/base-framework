@@ -12,6 +12,7 @@
         <module>base-springframework-util</module>
         <module>base-springframework-core</module>
         <module>base-springframework-mysql</module>
+        <module>base-springframework-redis</module>
         <module>base-springframework-cloud</module>
     </modules>
 
@@ -49,12 +50,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fastjson.version}</version>
         </dependency>
 
         <dependency>
