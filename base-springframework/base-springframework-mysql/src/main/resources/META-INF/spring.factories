@@ -1,4 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.wei.base.springframework.redis.config.MybatisPlusConfig
+  com.wei.base.springframework.mysql.config.MybatisPlusConfig
 org.springframework.boot.env.EnvironmentPostProcessor=\
-  com.wei.base.springframework.core.env.InitializeCustomConfiguration
+  com.wei.base.springframework.mysql.env.InitializeCustomConfiguration

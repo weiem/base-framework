@@ -1,5 +1,6 @@
 package com.wei.user.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.wei.base.springframework.constant.vo.RestfulVO;
 import com.wei.base.springframework.redis.utils.RedisLock;
 import com.wei.user.entity.User;
@@ -50,9 +51,16 @@ public class UserController {
     @ApiOperation("分页查询所有数据")
     @PostMapping("/test3")
     public void test1(@RequestBody UserVO user) {
-        redisLock.lock("test", "1111");
+        System.err.println(redisLock.lock("test"));
         System.err.println(11111);
-//        redisLock.unlock("test", "1111");
+        System.err.println(redisLock.unlock("test"));
+        return;
+    }
+
+    @ApiOperation("分页查询所有数据")
+    @GetMapping("/test4")
+    public void test1(Object object) throws JsonProcessingException {
+        System.err.println(object.toString());
         return;
     }
 }

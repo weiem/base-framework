@@ -1,4 +1,4 @@
-package com.wei.base.springframework.redis.env;
+package com.wei.base.springframework.mysql.env;
 
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;

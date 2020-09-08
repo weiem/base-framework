@@ -1,4 +1,4 @@
-package com.wei.base.springframework.redis.generator;
+package com.wei.base.springframework.mysql.generator;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.wei.base.springframework.redis.constants.GeneratorParam;
+import com.wei.base.springframework.mysql.constants.GeneratorParam;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;

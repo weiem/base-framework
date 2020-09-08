@@ -1,4 +1,4 @@
-package com.wei.base.springframework.redis.constants;
+package com.wei.base.springframework.mysql.constants;
 
 import lombok.Data;
 
