@@ -8,8 +8,6 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <modules>
-        <module>../wei-test</module>
-        <module>../wei-test-cloud</module>
         <module>../wei-gateway</module>
     </modules>
 

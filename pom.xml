@@ -12,8 +12,6 @@
     <modules>
         <module>base-springframework</module>
         <module>base-springframework-starter</module>
-        <module>wei-test</module>
-        <module>wei-test-cloud</module>
     </modules>
 
     <properties>
