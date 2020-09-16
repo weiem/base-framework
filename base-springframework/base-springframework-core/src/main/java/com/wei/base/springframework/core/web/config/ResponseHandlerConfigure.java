@@ -1,5 +1,7 @@
 package com.wei.base.springframework.core.web.config;
 
+import com.wei.base.springframework.constant.vo.RestfulVO;
+import com.wei.base.springframework.util.StringUtil;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -23,4 +25,17 @@ public class ResponseHandlerConfigure {
      * 返回值时间格式
      */
     private String dateFormat = "yyyy-MM-dd HH:mm:ss";
+
+    /**
+     * 返回值时间格式
+     */
+    private RestfulVO restfulVO = new RestfulVO();
+
+    public String getRestfulVOClassName() {
+        return restfulVO.getClass().getName();
+    }
+
+    public String getRestfulVOName() {
+        return StringUtil.getClassName(getRestfulVOClassName());
+    }
 }

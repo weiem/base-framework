@@ -48,6 +48,7 @@ public class ResponseHandler implements ResponseBodyAdvice<Object> {
     public Object beforeBodyWrite(Object t, MethodParameter methodParameter, MediaType mediaType,
                                   Class<? extends HttpMessageConverter<?>> httpMessageConverter,
                                   ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-        return new RestfulVO<>(t);
+        RestfulVO restfulVO = responseHandlerConfigure.getRestfulVO();
+        return restfulVO.success(t);
     }
 }

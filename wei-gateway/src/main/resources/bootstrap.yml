@@ -11,5 +11,12 @@ spring:
       # consul启动端口
       port: 8500
 
+    gateway:
+      routes:
+        - id: wei-user
+          uri: lb://wei-user
+          predicates:
+            - Path=/wei-user/**
+
   profiles:
     active: dev

@@ -36,6 +36,14 @@ public class RestfulVO<T> implements Serializable {
         this.data = data;
     }
 
+    public RestfulVO<T> success(T data) {
+        code = RestfulEnum.SUCCESS.code;
+        message = RestfulEnum.SUCCESS.msg;
+        this.data = data;
+
+        return this;
+    }
+
     public RestfulVO<T> fail(T data) {
         code = RestfulEnum.FAIL.code;
         message = RestfulEnum.FAIL.msg;

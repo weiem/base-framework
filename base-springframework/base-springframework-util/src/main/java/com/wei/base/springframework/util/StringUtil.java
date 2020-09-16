@@ -122,4 +122,13 @@ public class StringUtil extends StringUtils {
     public static List<String> splitList(String str) {
         return splitList(str, ",");
     }
+
+    public static String getClassName(String typeName) {
+        String[] split = StringUtil.split(typeName, ".");
+        if (split == null || split.length <= 0) {
+            return typeName;
+        }
+
+        return split[split.length - 1];
+    }
 }

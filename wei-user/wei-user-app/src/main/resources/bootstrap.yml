@@ -2,6 +2,7 @@ server:
   port: 8201
 
 spring:
+
   application:
     name: wei-user
   cloud:
@@ -12,7 +13,7 @@ spring:
       port: 8500
 
   profiles:
-    active: dev
+    active: ttt
 
   datasource:
     url: jdbc:mysql://192.168.11.128:3306/wei_user?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT

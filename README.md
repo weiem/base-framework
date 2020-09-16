@@ -3,6 +3,7 @@
 
 #base-framework
 用于处理jar包版本统一依赖
+base-framework下每个项目都有一个application.yml文件里面配置着默认的配置,如果在自己的项目中配置相同配置的话会覆盖默认配置
 
 #consul
 consul安装教程

@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.env.EnvironmentPostProcessor;
 import org.springframework.boot.env.YamlPropertySourceLoader;
+import org.springframework.core.Ordered;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertiesPropertySource;
@@ -22,7 +23,7 @@ import java.util.Properties;
  * @author : weierming
  * @date : 2020/7/13
  */
-public class InitializeCustomConfiguration implements EnvironmentPostProcessor {
+public class InitializeCustomConfiguration implements EnvironmentPostProcessor, Ordered {
 
     //自定义配置文件地址
     private static final List<String> PROFILES = Lists.newArrayList("application-mysql.yml");
@@ -81,5 +82,13 @@ public class InitializeCustomConfiguration implements EnvironmentPostProcessor {
         } catch (IOException ex) {
             throw new IllegalStateException("加载配置文件失败" + resource, ex);
         }
+    }
+
+    @Override
+    public int getOrder() {
+//        return Ordered.HIGHEST_PRECEDENCE + 1;
+//        return Ordered.HIGHEST_PRECEDENCE - 1;
+//        return Ordered.LOWEST_PRECEDENCE + 100;
+        return -1;
     }
 }

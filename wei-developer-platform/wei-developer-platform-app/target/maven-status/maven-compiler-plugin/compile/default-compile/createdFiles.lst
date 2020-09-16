@@ -1,0 +1,9 @@
+com\wei\user\mapper\UserMapper.class
+com\wei\user\mapstruct\UserMapstruct.class
+com\wei\user\controller\UserController.class
+com\wei\user\service\impl\UserServiceImpl.class
+com\wei\user\service\UserService.class
+com\wei\user\UserApplication.class
+com\wei\user\mapstruct\UserMapstructImpl.class
+com\wei\user\entity\User.class
+com\wei\user\vo\UserVO.class
