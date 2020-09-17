@@ -9,6 +9,8 @@
 
     <modules>
         <module>../wei-gateway</module>
+        <module>../wei-developer-platform</module>
+        <module>../wei-user</module>
     </modules>
 
     <properties>
