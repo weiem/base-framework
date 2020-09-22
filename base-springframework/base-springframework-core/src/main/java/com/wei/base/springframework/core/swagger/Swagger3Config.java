@@ -1,9 +1,10 @@
 package com.wei.base.springframework.core.swagger;
 
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.ConfigurableEnvironment;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -24,8 +25,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class Swagger3Config {
 
-    @Value("${spring.application.name}")
-    private String applicationName;
+    @Autowired
+    private ConfigurableEnvironment env;
 
     @Bean
     public Docket createRestApi() {
@@ -39,7 +40,7 @@ public class Swagger3Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title(applicationName + "接口文档")
+                .title(env.getProperty("spring.application.name") + "接口文档")
                 .description("所有返回数据都会包含{\"code\" : 200, \"message\" : \"test\", \"data\": Responses}")
                 .contact(new Contact("prinz wei",
                         "https://github.com/weiem/base-framework",

@@ -1,61 +1,101 @@
 package com.wei.base.springframework.redis.utils;
 
 import com.wei.base.springframework.redis.config.RedisProperties;
+import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 @Component
 public class RedisLock<T> {
 
     @Autowired
-    private RedisTemplate<String, T> redisTemplate;
+    RedissonClient redissonClient;
 
     @Autowired
     private RedisProperties redisProperties;
 
     /**
-     * 锁
+     * 可重入锁
      *
      * @param key            锁key值
      * @param expirationTime 过期时间
      * @param timeUnit       时间单位
-     * @return true枷锁成功, false枷锁失败
+     * @return 锁对象, 解锁方式  RLock.unlock()
      */
-    public Boolean lock(String key, Long expirationTime, TimeUnit timeUnit) {
-        return redisTemplate.opsForValue().setIfAbsent(redisProperties.getLockKey() + key, (T) "", expirationTime, timeUnit);
+    public RLock lock(String key, long expirationTime, TimeUnit timeUnit) {
+        RLock rLock = redissonClient.getLock(redisProperties.getLockKey() + key);
+        rLock.lock(expirationTime, timeUnit);
+        return rLock;
     }
 
     /**
-     * 锁(过期时间30秒)
+     * 可重入锁(过期时间30秒)
      *
      * @param key 锁key值
-     * @return true枷锁成功, false枷锁失败
+     * @return 锁对象, 解锁方式  RLock.unlock()
      */
-    public Boolean lock(String key) {
+    public RLock lock(String key) {
         return lock(key, redisProperties.getExpirationTime(), TimeUnit.SECONDS);
     }
 
     /**
-     * 锁
+     * 可重入锁
      *
      * @param key            锁key值
      * @param expirationTime 过期时间(单位:秒)
-     * @return true枷锁成功, false枷锁失败
+     * @return 锁对象, 解锁方式  RLock.unlock()
      */
-    public Boolean lock(String key, Long expirationTime) {
+    public RLock lock(String key, long expirationTime) {
         return lock(key, expirationTime, TimeUnit.SECONDS);
     }
 
     /**
-     * 解锁
+     * 尝试获取锁
+     * <p>
+     * try {
+     * if(tryLock(key)) {
+     * <p>
+     * }
+     * } catch (Exception e) {
+     * } finally {
+     * // 无论如何, 最后都要解锁
+     * unlock();
+     * }
      *
-     * @param key 锁key值
-     * @return true:成功,false:失败
+     * @param rLock     当前锁对象
+     * @param waitTime  等待时间
+     * @param leaseTime 过期时间
+     * @param unit      时间单位
+     * @return true获取成功, false获取失败
+     * @throws InterruptedException 如果线程中断
      */
-    public Boolean unlock(String key) {
-        return redisTemplate.opsForValue().getOperations().delete(redisProperties.getLockKey() + key);
+    public Boolean tryLock(RLock rLock, long waitTime, long leaseTime, TimeUnit unit) throws InterruptedException {
+        return rLock.tryLock(waitTime, leaseTime, unit);
+    }
+
+    /**
+     * 尝试获取锁
+     * <p>
+     * try {
+     * if(tryLock(key)) {
+     * <p>
+     * }
+     * } catch (Exception e) {
+     * } finally {
+     * // 无论如何, 最后都要解锁
+     * unlock();
+     * }
+     *
+     * @param rLock 当前锁对象
+     * @return true获取成功, false获取失败
+     * @throws InterruptedException 如果线程中断
+     */
+    public Boolean tryLock(RLock rLock) throws InterruptedException {
+        return tryLock(rLock, redisProperties.getWaitTime(), redisProperties.getExpirationTime(), TimeUnit.SECONDS);
     }
 }

@@ -21,4 +21,9 @@ public class RedisProperties implements Serializable {
      * redis锁默认过期时间
      */
     Long expirationTime;
+
+    /**
+     * redis锁等待时间
+     */
+    Long waitTime;
 }
