@@ -1,0 +1,2 @@
+#org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+#  com.wei.base.springframework.easyexcel.controller.BaseExportImpl

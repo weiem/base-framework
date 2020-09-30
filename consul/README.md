@@ -1,5 +1,5 @@
-#consul
-##consul安装
+# consul
+## consul安装
 去官网https://www.consul.io/ 下载最新版本或者使用项目里的安装包
 将consul_1.8.0_linux_amd64.zip copy至linux后进行安装并运行
 
@@ -11,13 +11,13 @@ sudo nohup ./consul agent -dev -ui -client 0.0.0.0 &
 ```
 访问 ip:8500 界面显示表明运行成功
 
-###通过docker安装
+### 通过docker安装
 ```
 docker pull consul
 docker run -d --name consul -p 8500:8500 consul agent -dev -client 0.0.0.0 -ui
 ```
 
-##git2consul安装
+## git2consul安装
 ```
 curl --silent --location https://rpm.nodesource.com/setup_14.x | sudo -E bash -
 sudo yum -y install nodejs
