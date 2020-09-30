@@ -1,4 +1,10 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-	com.wei.base.springframework.core.CoreConfiguration
+  com.wei.base.springframework.core.http.converter.MappingJacksonConverter,\
+  com.wei.base.springframework.core.swagger.Swagger3Config,\
+  com.wei.base.springframework.core.swagger.Swagger3ServiceModelToOpenApiMapperImpl,\
+  com.wei.base.springframework.core.web.config.ResponseHandlerConfigure,\
+  com.wei.base.springframework.core.web.handler.BaseExceptionHandler,\
+  com.wei.base.springframework.core.web.handler.ResponseHandler
+
 org.springframework.boot.env.EnvironmentPostProcessor=\
   com.wei.base.springframework.core.env.InitializeCustomConfiguration

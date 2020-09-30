@@ -7,6 +7,8 @@ import com.wei.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 用户信息表 服务实现类
@@ -20,5 +22,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Autowired
     private UserMapper userMapper;
-    
+
+    @Override
+    public Integer insertBatchSomeColumn(List<User> list) {
+        return userMapper.insertBatchSomeColumn(list);
+    }
 }

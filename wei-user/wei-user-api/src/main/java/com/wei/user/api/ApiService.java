@@ -1,4 +1,4 @@
-package com.wei.cloud.api;
+package com.wei.user.api;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

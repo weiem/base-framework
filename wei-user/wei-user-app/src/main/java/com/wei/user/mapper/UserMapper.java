@@ -1,7 +1,9 @@
 package com.wei.user.mapper;
 
-import com.wei.user.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.wei.user.entity.User;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UserMapper extends BaseMapper<User> {
 
+    int insertBatchSomeColumn(List<User> entityList);
 }

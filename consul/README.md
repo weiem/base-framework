@@ -11,9 +11,15 @@ sudo nohup ./consul agent -dev -ui -client 0.0.0.0 &
 ```
 访问 ip:8500 界面显示表明运行成功
 
+###通过docker安装
+```
+docker pull consul
+docker run -d --name consul -p 8500:8500 consul agent -dev -client 0.0.0.0 -ui
+```
+
 ##git2consul安装
 ```
-curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash
+curl --silent --location https://rpm.nodesource.com/setup_14.x | sudo -E bash -
 sudo yum -y install nodejs
 ```
 如果yum下载失败的话执行以下代码后在重试
@@ -31,8 +37,8 @@ npm install -g git2consul --registry=https://registry.npm.taobao.org
 ```
 下载成功后创建git2consul的配置文件
 ```
-mkdir /user/local/gitconsul
-cd /user/local/gitconsul
+mkdir /usr/local/gitconsul
+cd /usr/local/gitconsul
 vi git2consul.json
 ```
 将以下内容复制进去并做修改

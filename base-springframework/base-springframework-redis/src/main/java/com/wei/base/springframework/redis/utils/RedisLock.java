@@ -1,101 +1,62 @@
 package com.wei.base.springframework.redis.utils;
 
-import com.wei.base.springframework.redis.config.RedisProperties;
+import com.wei.base.springframework.redis.constant.RedisConstant;
+import com.wei.base.springframework.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RCountDownLatch;
 import org.redisson.api.RLock;
+import org.redisson.api.RReadWriteLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Component
 public class RedisLock<T> {
 
     @Autowired
-    RedissonClient redissonClient;
-
-    @Autowired
-    private RedisProperties redisProperties;
+    private RedissonClient redissonClient;
 
     /**
      * 可重入锁
-     *
-     * @param key            锁key值
-     * @param expirationTime 过期时间
-     * @param timeUnit       时间单位
-     * @return 锁对象, 解锁方式  RLock.unlock()
-     */
-    public RLock lock(String key, long expirationTime, TimeUnit timeUnit) {
-        RLock rLock = redissonClient.getLock(redisProperties.getLockKey() + key);
-        rLock.lock(expirationTime, timeUnit);
-        return rLock;
-    }
-
-    /**
-     * 可重入锁(过期时间30秒)
      *
      * @param key 锁key值
-     * @return 锁对象, 解锁方式  RLock.unlock()
+     * @return 锁对象
      */
     public RLock lock(String key) {
-        return lock(key, redisProperties.getExpirationTime(), TimeUnit.SECONDS);
+        return redissonClient.getLock(RedisConstant.LOCK_KEY + StringUtil.upperCase(key));
     }
 
     /**
-     * 可重入锁
+     * 公平锁
      *
-     * @param key            锁key值
-     * @param expirationTime 过期时间(单位:秒)
-     * @return 锁对象, 解锁方式  RLock.unlock()
+     * @param key 锁key值
+     * @return 锁对象
      */
-    public RLock lock(String key, long expirationTime) {
-        return lock(key, expirationTime, TimeUnit.SECONDS);
+    public RLock fairLock(String key) {
+        return redissonClient.getFairLock(RedisConstant.FAIR_LOCK + StringUtil.upperCase(key));
     }
 
     /**
-     * 尝试获取锁
-     * <p>
-     * try {
-     * if(tryLock(key)) {
-     * <p>
-     * }
-     * } catch (Exception e) {
-     * } finally {
-     * // 无论如何, 最后都要解锁
-     * unlock();
-     * }
+     * 读写锁 分布式可重入读写锁允许同时有多个读锁和一个写锁处于加锁状态。
      *
-     * @param rLock     当前锁对象
-     * @param waitTime  等待时间
-     * @param leaseTime 过期时间
-     * @param unit      时间单位
-     * @return true获取成功, false获取失败
-     * @throws InterruptedException 如果线程中断
+     * @param key 锁key值
+     * @return 锁对象
      */
-    public Boolean tryLock(RLock rLock, long waitTime, long leaseTime, TimeUnit unit) throws InterruptedException {
-        return rLock.tryLock(waitTime, leaseTime, unit);
+    public RReadWriteLock readWriteLock(String key) {
+        return redissonClient.getReadWriteLock(RedisConstant.READ_WRITE_LOCK + StringUtil.upperCase(key));
     }
 
     /**
-     * 尝试获取锁
-     * <p>
-     * try {
-     * if(tryLock(key)) {
-     * <p>
-     * }
-     * } catch (Exception e) {
-     * } finally {
-     * // 无论如何, 最后都要解锁
-     * unlock();
-     * }
+     * 闭锁
+     * 通过trySetCount设置大小
+     * 通过在其他线程或者MQ里只想countDown()执行-1操作
+     * 当设置的trySetCount大小等于0时代表已经解锁
      *
-     * @param rLock 当前锁对象
-     * @return true获取成功, false获取失败
-     * @throws InterruptedException 如果线程中断
+     * @param key 锁key值
+     * @return 锁对象
      */
-    public Boolean tryLock(RLock rLock) throws InterruptedException {
-        return tryLock(rLock, redisProperties.getWaitTime(), redisProperties.getExpirationTime(), TimeUnit.SECONDS);
+    public RCountDownLatch countDownLatch(String key) {
+        return redissonClient.getCountDownLatch(RedisConstant.COUNT_DOWN_LATCH + StringUtil.upperCase(key));
     }
 }

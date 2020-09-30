@@ -33,8 +33,7 @@ public class RibbonConfig {
         if (!eagerLoad.getAutoEnabled()) {
             return;
         }
-
-
+        
         List<ServiceInstance> serviceInstances = consulDiscoveryClient.getAllInstances();
         List<String> clients = Lists.newArrayListWithCapacity(serviceInstances.size());
 

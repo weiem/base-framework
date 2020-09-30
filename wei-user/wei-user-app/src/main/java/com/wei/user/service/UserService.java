@@ -1,7 +1,9 @@
 package com.wei.user.service;
 
-import com.wei.user.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wei.user.entity.User;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserService extends IService<User> {
 
+    Integer insertBatchSomeColumn(List<User> list);
 }

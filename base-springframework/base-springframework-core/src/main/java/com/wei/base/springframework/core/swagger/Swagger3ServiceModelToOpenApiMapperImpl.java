@@ -66,6 +66,7 @@ public class Swagger3ServiceModelToOpenApiMapperImpl extends ServiceModelToOpenA
 
         Map<String, String> map = Maps.newHashMapWithExpectedSize(schemas.size());
         String restfulVOName = responseHandlerConfigure.getRestfulVOName();
+        Map<String, Schema> newSchemas = Maps.newHashMapWithExpectedSize(schemas.size());
         for (Map.Entry<String, Schema> entry : schemas.entrySet()) {
             Schema schema = entry.getValue();
             // 判断返回对象是否已经包含默认包装类格式
@@ -83,9 +84,10 @@ public class Swagger3ServiceModelToOpenApiMapperImpl extends ServiceModelToOpenA
             }
 
             Schema restfulSchema = getRestfulSchema(schema, restfulClass);
-            schemas.put(restfulSchemaName, restfulSchema);
+            newSchemas.put(restfulSchemaName, restfulSchema);
         }
 
+        schemas.putAll(newSchemas);
         return map;
     }
 

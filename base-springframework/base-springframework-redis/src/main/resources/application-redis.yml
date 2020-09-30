@@ -14,7 +14,3 @@ spring:
         max-idle: 10
     # 连接超时时间（毫秒）
     timeout: 3000
-    # redis锁key值
-    lockKey: "REDIS_LOCK:"
-    # redis锁默认过期时间
-    expirationTime: 30
