@@ -10,15 +10,3 @@ spring:
       host: 192.168.11.128
       # consul启动端口
       port: 8500
-
-
-  #  profiles:
-#    active: dev
-
-#  datasource:
-#    url: jdbc:p6spy:mysql://192.168.11.128:3306/wei_user?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
-#    username: root
-#    password: 123456
-  redis:
-    host: 192.168.11.128
-    port: 6379
