@@ -40,7 +40,7 @@ public class FeignInterceptor implements RequestInterceptor {
             HttpServletRequest httpServletRequest = servletRequestAttributes.getRequest();
             Map<String, Collection<String>> headers = template.headers();
 
-            //有些第三方接口有做安全校验如果header传递的话会导致报错
+            // 有些第三方接口有做安全校验如果header传递的话会导致报错
             String headerTransmitFilter = feignConfigure.getHeaderTransmitFilter();
             if (headers.containsKey(headerTransmitFilter)) {
                 Collection<String> key = headers.get(headerTransmitFilter);

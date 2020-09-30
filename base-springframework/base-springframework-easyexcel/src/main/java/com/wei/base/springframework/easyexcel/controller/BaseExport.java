@@ -1,6 +1,7 @@
 package com.wei.base.springframework.easyexcel.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.google.common.base.Charsets;
 import com.wei.base.springframework.constant.exception.ServiceException;
 import com.wei.base.springframework.easyexcel.enums.EsayExcelExceptionEnum;
 import com.wei.base.springframework.easyexcel.vo.ExportParam;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletResponse;
 import java.io.OutputStream;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -58,7 +58,7 @@ public interface BaseExport<T, E> {
         try (OutputStream outputStream = httpServletResponse.getOutputStream()) {
             httpServletResponse.addHeader(HttpHeaders.CONTENT_DISPOSITION, String.format("attachment;fileName=%s",
                     URLEncoder.encode(exportRequest.getFileName() + exportParam.getFileType().getExcelTypeEnum().getValue(),
-                            String.valueOf(StandardCharsets.UTF_8))));
+                            String.valueOf(Charsets.UTF_8))));
             BaseExportLogic.excelWriter(outputStream, exportParam);
         } catch (Exception e) {
             log.error(e.getMessage(), e);

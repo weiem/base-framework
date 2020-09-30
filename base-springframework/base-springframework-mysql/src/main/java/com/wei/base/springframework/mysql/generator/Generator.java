@@ -25,6 +25,9 @@ public class Generator {
 
     private static final GeneratorParam param = new GeneratorParam();
 
+    /**
+     * 当前项目地址
+     */
     private static final String PROJECT_PATH = System.getProperty("user.dir");
 
     /**

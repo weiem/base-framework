@@ -86,9 +86,6 @@ public class InitializeCustomConfiguration implements EnvironmentPostProcessor, 
 
     @Override
     public int getOrder() {
-//        return Ordered.HIGHEST_PRECEDENCE + 1;
-//        return Ordered.HIGHEST_PRECEDENCE - 1;
-//        return Ordered.LOWEST_PRECEDENCE + 100;
         return -1;
     }
 }

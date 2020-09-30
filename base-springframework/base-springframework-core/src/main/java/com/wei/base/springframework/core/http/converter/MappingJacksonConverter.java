@@ -38,7 +38,7 @@ public class MappingJacksonConverter {
         module.addDeserializer(String.class, new StringWithoutSpaceDeserializer(String.class));
         objectMapper.registerModule(module);
 
-        //在反序列化时忽略在 json 中存在但 Java 对象不存在的属性
+        // 在反序列化时忽略在 json 中存在但 Java 对象不存在的属性
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         mappingJackson2HttpMessageConverter.setObjectMapper(objectMapper);
         mappingJackson2HttpMessageConverter.setDefaultCharset(Charsets.UTF_8);

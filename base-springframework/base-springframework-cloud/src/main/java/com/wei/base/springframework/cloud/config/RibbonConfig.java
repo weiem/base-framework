@@ -25,6 +25,9 @@ public class RibbonConfig {
     @Autowired
     private RibbonProperties ribbonProperties;
 
+    /**
+     * 全局自动懒加载
+     */
     @Bean
     @ConditionalOnProperty("ribbon.eager-load.enabled")
     public void autoEagerLoad() {
@@ -33,7 +36,8 @@ public class RibbonConfig {
         if (!eagerLoad.getAutoEnabled()) {
             return;
         }
-        
+
+        // 在服务启动后读取consul中的注册列表缓存起来减少自定义配置
         List<ServiceInstance> serviceInstances = consulDiscoveryClient.getAllInstances();
         List<String> clients = Lists.newArrayListWithCapacity(serviceInstances.size());
 
@@ -53,6 +57,7 @@ public class RibbonConfig {
             clients.add(serviceId);
         }
 
+        // 重新修改ribbon懒加载配置
         ribbonEagerLoadProperties.setClients(clients);
     }
 }

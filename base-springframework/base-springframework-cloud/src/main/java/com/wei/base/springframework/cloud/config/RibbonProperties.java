@@ -14,5 +14,8 @@ public class RibbonProperties implements Serializable {
 
     private static final long serialVersionUID = -2085296475361063649L;
 
+    /**
+     * 懒加载配置
+     */
     private EagerLoad eagerLoad;
 }
