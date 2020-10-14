@@ -6,6 +6,7 @@ import com.wei.base.springframework.constant.vo.RestfulVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -66,8 +67,8 @@ public class BaseExceptionHandler {
         List<ObjectError> allErrors = e.getBindingResult().getAllErrors();
         StringBuilder stringBuilder = new StringBuilder();
 
-        allErrors.forEach(vo -> {
-            stringBuilder.append(vo.getDefaultMessage().toString() + ";");
+        allErrors.forEach(error -> {
+            stringBuilder.append(error.getDefaultMessage().toString() + ";");
         });
         return new RestfulVO<>(RestfulEnum.FAIL, stringBuilder.toString());
     }
@@ -96,6 +97,25 @@ public class BaseExceptionHandler {
     public RestfulVO<String> httpMessageNotReadableException(HttpMessageNotReadableException e) {
         log.error(e.getMessage(), e);
         return new RestfulVO<>(RestfulEnum.FAIL, "请求参数错误!");
+    }
+
+    /**
+     * 封装bind抛出的错误
+     *
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(BindException.class)
+    @ResponseBody
+    public RestfulVO<String> bindException(BindException e) {
+        log.error(e.getMessage(), e);
+        List<ObjectError> allErrors = e.getAllErrors();
+        StringBuilder stringBuilder = new StringBuilder();
+
+        allErrors.forEach(error -> {
+            stringBuilder.append(error.getDefaultMessage() + ";");
+        });
+        return new RestfulVO<>(RestfulEnum.FAIL, stringBuilder.toString());
     }
 
     /**
