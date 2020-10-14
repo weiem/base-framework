@@ -33,7 +33,7 @@ public class RibbonConfig {
     public void autoEagerLoad() {
         //判断是否需要自动加载
         EagerLoad eagerLoad = ribbonProperties.getEagerLoad();
-        if (!eagerLoad.getAutoEnabled()) {
+        if (eagerLoad == null && !eagerLoad.getAutoEnabled()) {
             return;
         }
 
@@ -42,10 +42,7 @@ public class RibbonConfig {
         List<String> clients = Lists.newArrayListWithCapacity(serviceInstances.size());
 
         List<String> excludes = Lists.newArrayList();
-        if (eagerLoad != null) {
-            excludes = eagerLoad.getExcludes();
-        }
-
+        excludes = eagerLoad.getExcludes();
         for (ServiceInstance serviceInstance : serviceInstances) {
             String serviceId = serviceInstance.getServiceId();
             if (CollectionUtils.isNotEmpty(excludes)) {

@@ -18,6 +18,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring-cloud.version>2.2.3.RELEASE</spring-cloud.version>
+        <spring-boot-starter.version>2.3.4.RELEASE</spring-boot-starter.version>
     </properties>
 
     <dependencies>
@@ -25,6 +26,24 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
             <version>${spring-cloud.version}</version>
+            <exclusions>
+            	<exclusion>
+            		<groupId>org.springframework.boot</groupId>
+            		<artifactId>spring-boot-starter</artifactId>
+            	</exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
+            <version>${spring-boot-starter.version}</version>
+            <exclusions>
+            	<exclusion>
+            		<groupId>org.springframework.boot</groupId>
+            		<artifactId>spring-boot-starter</artifactId>
+            	</exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -36,9 +55,39 @@
             		<groupId>org.springframework.boot</groupId>
             		<artifactId>spring-boot-starter-web</artifactId>
             	</exclusion>
+            	<exclusion>
+            		<groupId>org.springframework.boot</groupId>
+            		<artifactId>spring-boot-starter</artifactId>
+            	</exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.wei</groupId>
+            <artifactId>base-springframework-redis</artifactId>
+            <version>${project.version}</version>
+            <exclusions>
+            	<exclusion>
+            		<groupId>org.redisson</groupId>
+            		<artifactId>redisson-spring-boot-starter</artifactId>
+            	</exclusion>
+            	<exclusion>
+            		<groupId>org.springframework.boot</groupId>
+            		<artifactId>spring-boot-starter-web</artifactId>
+            	</exclusion>
             </exclusions>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${spring-boot-starter.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>

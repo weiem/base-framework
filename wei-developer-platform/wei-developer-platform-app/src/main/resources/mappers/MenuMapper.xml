@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wei.developer.platform.mapper.MenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wei.developer.platform.entity.Menu">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="uri" property="uri" />
+        <result column="system_id" property="systemId" />
+        <result column="is_enable" property="isEnable" />
+        <result column="is_delete" property="isDelete" />
+        <result column="create_id" property="createId" />
+        <result column="create_time" property="createTime" />
+        <result column="update_id" property="updateId" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+</mapper>

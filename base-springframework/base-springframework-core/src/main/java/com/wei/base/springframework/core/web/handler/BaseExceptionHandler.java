@@ -82,7 +82,6 @@ public class BaseExceptionHandler {
     @ResponseBody
     public RestfulVO<String> missingServletRequestParameterException(MissingServletRequestParameterException e) {
         log.error(e.getMessage(), e);
-
         return new RestfulVO<>(RestfulEnum.FAIL, String.format("请求参数%s不存在!", e.getParameterName()));
     }
 
@@ -96,7 +95,6 @@ public class BaseExceptionHandler {
     @ResponseBody
     public RestfulVO<String> httpMessageNotReadableException(HttpMessageNotReadableException e) {
         log.error(e.getMessage(), e);
-
         return new RestfulVO<>(RestfulEnum.FAIL, "请求参数错误!");
     }
 

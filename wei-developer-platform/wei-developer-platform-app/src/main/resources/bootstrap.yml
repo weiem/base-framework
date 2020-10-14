@@ -1,9 +1,9 @@
 server:
-  port: 8201
+  port: 8001
 
 spring:
   application:
-    name: wei-user
+    name: developer-platform
   cloud:
     consul:
       # consul的IP
@@ -15,9 +15,9 @@ spring:
     active: dev
 
   datasource:
-    url: jdbc:mysql://192.168.11.128:3306/wei_user?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+    url: jdbc:mysql://192.168.11.128:3307/developer_platform?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
     username: root
-    password: 123456
+    password: root
   redis:
     host: 192.168.11.128
     port: 6379

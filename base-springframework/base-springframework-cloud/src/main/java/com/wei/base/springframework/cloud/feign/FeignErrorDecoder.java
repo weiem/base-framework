@@ -18,7 +18,7 @@ import static feign.FeignException.errorStatus;
  * @date : 2020/7/24
  */
 @Slf4j
-public class FeginErrorDecoder implements ErrorDecoder {
+public class FeignErrorDecoder implements ErrorDecoder {
 
     @Override
     public Exception decode(String methodKey, Response response) {

@@ -14,7 +14,12 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-
+/**
+ * 对象拷贝工具类
+ *
+ * @author : weierming
+ * @date : 2020/9/30
+ */
 @Slf4j
 public class BeanUtil {
 

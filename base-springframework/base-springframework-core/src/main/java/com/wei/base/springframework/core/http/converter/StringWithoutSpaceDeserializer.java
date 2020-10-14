@@ -22,7 +22,7 @@ public class StringWithoutSpaceDeserializer extends StdDeserializer<String> {
     }
 
     @Override
-    public String deserialize(JsonParser jsonParser, DeserializationContext ctxt) throws IOException {
+    public String deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         return StringUtil.trim(jsonParser.getText());
     }
 }

@@ -10,7 +10,13 @@
         <result column="email" property="email" />
         <result column="password" property="password" />
         <result column="picture_url" property="pictureUrl" />
+        <result column="is_admin" property="isAdmin" />
+        <result column="is_enable" property="isEnable" />
+        <result column="is_delete" property="isDelete" />
+        <result column="create_id" property="createId" />
         <result column="create_time" property="createTime" />
+        <result column="update_id" property="updateId" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
 
 </mapper>

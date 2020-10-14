@@ -1,4 +1,4 @@
-package com.wei.base.springframework.core.http.converter;
+package com.wei.base.springframework.core.web.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -6,31 +6,39 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
-import com.wei.base.springframework.core.web.config.ResponseHandlerConfigure;
+import com.wei.base.springframework.core.http.converter.StringWithoutSpaceDeserializer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
+/**
+ * 将MappingJackson2HttpMessageConverter消息转换器排在靠前位置
+ *
+ * @author : weierming
+ * @date : 2020/10/12
+ */
 @Configuration
-public class MappingJacksonConverter {
+public class WebConfiguration implements WebMvcConfigurer {
 
     @Autowired
     private ResponseHandlerConfigure responseHandlerConfigure;
 
-    @Bean
-    public MappingJackson2HttpMessageConverter configureMessageConverters() {
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
-        //设置日期格式
         ObjectMapper objectMapper = new ObjectMapper();
+        //设置日期格式
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(responseHandlerConfigure.getDateFormat());
         objectMapper.setDateFormat(simpleDateFormat);
 
         // null值是否返回,默认为不返回
-        if (responseHandlerConfigure.getIsWriteMapNullValue()) {
+        if (!responseHandlerConfigure.getIsWriteMapNullValue()) {
             objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         }
 
@@ -43,6 +51,6 @@ public class MappingJacksonConverter {
         mappingJackson2HttpMessageConverter.setObjectMapper(objectMapper);
         mappingJackson2HttpMessageConverter.setDefaultCharset(Charsets.UTF_8);
         mappingJackson2HttpMessageConverter.setSupportedMediaTypes(Lists.newArrayList(MediaType.APPLICATION_JSON));
-        return mappingJackson2HttpMessageConverter;
+        converters.add(0, mappingJackson2HttpMessageConverter);
     }
 }

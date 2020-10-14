@@ -83,7 +83,7 @@ public class Swagger3ServiceModelToOpenApiMapperImpl extends ServiceModelToOpenA
                 continue;
             }
 
-            Schema restfulSchema = getRestfulSchema(schema, restfulClass);
+            Schema restfulSchema = getRestfulSchema(schema, restfulClass, schemaName);
             newSchemas.put(restfulSchemaName, restfulSchema);
         }
 
@@ -98,7 +98,7 @@ public class Swagger3ServiceModelToOpenApiMapperImpl extends ServiceModelToOpenA
      * @param restfulClass 返回对象类
      * @return 自定义封装返回的schema对象
      */
-    private Schema getRestfulSchema(Schema schema, Class<?> restfulClass) {
+    private Schema getRestfulSchema(Schema schema, Class<?> restfulClass, String schemaName) {
         // 通过反射获取返回对象的属性
         PropertyDescriptor[] propertyDescriptors = ReflectUtils.getBeanProperties(restfulClass);
         Schema restfulSchema = new Schema();
@@ -118,8 +118,12 @@ public class Swagger3ServiceModelToOpenApiMapperImpl extends ServiceModelToOpenA
 
             restfulPropertiesSchema.setName(name);
             restfulPropertiesSchema.setTitle(name);
-            String typeName = propertyDescriptor.getPropertyType().getTypeName();
-            restfulPropertiesSchema.setType(StringUtil.lowerCase(StringUtil.getClassName(typeName)));
+            if (StringUtil.equals(name, "data") && StringUtil.isNotBlank(schemaName)) {
+                restfulPropertiesSchema.set$ref(schemaName);
+            } else {
+                String typeName = propertyDescriptor.getPropertyType().getTypeName();
+                restfulPropertiesSchema.setType(StringUtil.lowerCase(StringUtil.getClassName(typeName)));
+            }
             restfulVOProperties.put(name, restfulPropertiesSchema);
         }
 
@@ -218,7 +222,7 @@ public class Swagger3ServiceModelToOpenApiMapperImpl extends ServiceModelToOpenA
         // 方法放回viod时content会为空
         if (content.isEmpty()) {
             MediaType mediaType = new MediaType();
-            mediaType.schema(getRestfulSchema(null, restfulClass));
+            mediaType.schema(getRestfulSchema(null, restfulClass, null));
 
             // 添加返回对象
             content.addMediaType(org.springframework.http.MediaType.ALL_VALUE, mediaType);

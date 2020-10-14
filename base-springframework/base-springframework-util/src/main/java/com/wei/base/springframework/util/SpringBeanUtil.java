@@ -43,7 +43,6 @@ public class SpringBeanUtil implements ApplicationContextAware {
      * @return 返回这个bean
      * @throws BeansException bean异常
      */
-    @SuppressWarnings("unchecked")
     public static <T> T getBean(String name) throws BeansException {
         return (T) applicationContext.getBean(name);
     }
