@@ -10,61 +10,39 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>base-springframework-core</artifactId>
+    <artifactId>base-springframework-db</artifactId>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <spring-boot-maven-plugin.version>2.3.1.RELEASE</spring-boot-maven-plugin.version>
-        <springfox-boot-starter.version>3.0.0</springfox-boot-starter.version>
-        <mapstruct.version>1.3.1.Final</mapstruct.version>
+        <spring-boot-maven-plugin.version>2.3.4.RELEASE</spring-boot-maven-plugin.version>
+        <mysql-connector-java.version>8.0.21</mysql-connector-java.version>
+        <mybatis-plus.version>3.3.2</mybatis-plus.version>
+        <freemarker.version>2.3.30</freemarker.version>
+        <p6spy.version>3.9.1</p6spy.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.wei</groupId>
-            <artifactId>base-springframework-constant</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.wei</groupId>
             <artifactId>base-springframework-util</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring-boot-starter.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
             <version>${spring-boot-starter.version}</version>
         </dependency>
-
         <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>${mapstruct.version}</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java.version}</version>
         </dependency>
-
         <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-processor</artifactId>
-            <version>${mapstruct.version}</version>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>${p6spy.version}</version>
         </dependency>
     </dependencies>
 
@@ -79,12 +57,6 @@
                         <execution>
                             <goals>
                                 <goal>repackage</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>build-info</id>
-                            <goals>
-                                <goal>build-info</goal>
                             </goals>
                         </execution>
                     </executions>

@@ -1,7 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.wei.base.springframework.mysql.mybatisplus.config.MybatisPlusConfig,\
-  com.wei.base.springframework.mysql.mybatisplus.core.injector.CustomSqlInjector,\
-  com.wei.base.springframework.mysql.mybatisplus.config.CustomMybatisPlusProperties
-
-org.springframework.boot.env.EnvironmentPostProcessor=\
-  com.wei.base.springframework.mysql.env.InitializeCustomConfiguration

@@ -36,6 +36,11 @@
             <artifactId>base-springframework-cloud</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.wei</groupId>
+            <artifactId>base-springframework-swagger</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

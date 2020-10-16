@@ -1,16 +1,19 @@
 package com.wei.developer.platform.controller;
 
+import com.wei.base.springframework.redis.utils.RedisUtil;
 import com.wei.base.springframework.util.VerifyImageUtil;
 import com.wei.base.springframework.util.kaptcha.vo.CharVerifyImage;
 import com.wei.base.springframework.util.kaptcha.vo.OperatorVerifyImage;
 import com.wei.base.springframework.util.kaptcha.vo.SlideVerifyImage;
 import com.wei.base.springframework.util.kaptcha.vo.TextSelectionVerifyImage;
+import com.wei.developer.platform.entity.User;
 import com.wei.developer.platform.service.UserService;
 import com.wei.developer.platform.vo.request.CheckVerifyImageRequest;
 import com.wei.developer.platform.vo.respon.VerifyImageResp;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.Parameter;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +38,13 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
+
+    @Autowired
+    private RedisUtil redisUtil;
+
+    @Autowired
+    private RedissonClient redissonClient;
 
     @ApiOperation("生成验证码图片")
     @GetMapping("generateVerifyImage")
@@ -53,8 +62,15 @@ public class UserController {
 
     @ApiOperation("分页查询所有数据")
     @PostMapping("test")
-    public CharVerifyImage getCharVerifyImage(@RequestBody CharVerifyImage verifyImage) throws IOException {
-        return VerifyImageUtil.getCharVerifyImage();
+    public Object getCharVerifyImage(@RequestBody CharVerifyImage verifyImage) throws IOException {
+        User user = new User();
+        user.setId(1L);
+        user.setName("222");
+
+        redisTemplate.opsForValue().set("test", user);
+        user = redisUtil.get("test", User.class);
+        System.err.println(user.toString());
+        return redisTemplate.opsForValue().get("test");
     }
 
     @ApiOperation("分页查询所有数据1")
