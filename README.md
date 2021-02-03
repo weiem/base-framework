@@ -11,7 +11,7 @@ base-framework下每个项目都有一个application.yml文件里面配置着默
 ### 技术栈
 注册中心:consul
 配置中心:git2consul
-json序列化工具:sping自带的jackson,由于fastJson问题较多就不使用了
+json序列化工具:sping中引用的jackson,由于fastJson问题较多就不使用了
 redis:采用redisson工具类
 使用了lombok来减少实体中的代码,如果要提供给第三方引用的jar包,那么第三方jar包中就不要用lombok了
 使用了swagger3来提供文档,好处:更改代码可以同步修改文档

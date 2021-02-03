@@ -19,7 +19,7 @@
 
         <dependency>
             <groupId>com.wei</groupId>
-            <artifactId>base-springframework-mysql</artifactId>
+            <artifactId>base-springframework-db</artifactId>
             <version>${project.version}</version>
         </dependency>
 

@@ -41,8 +41,7 @@ public class RibbonConfig {
         List<ServiceInstance> serviceInstances = consulDiscoveryClient.getAllInstances();
         List<String> clients = Lists.newArrayListWithCapacity(serviceInstances.size());
 
-        List<String> excludes = Lists.newArrayList();
-        excludes = eagerLoad.getExcludes();
+        List<String> excludes = eagerLoad.getExcludes();
         for (ServiceInstance serviceInstance : serviceInstances) {
             String serviceId = serviceInstance.getServiceId();
             if (CollectionUtils.isNotEmpty(excludes)) {
